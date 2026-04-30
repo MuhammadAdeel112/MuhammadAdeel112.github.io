@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Muhammad Adeel | Premium Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg: #030303;
-    --surface: rgba(20, 20, 20, 0.6);
-    --surface-hover: rgba(30, 30, 30, 0.8);
-    --border: rgba(255, 255, 255, 0.08);
+    --bg: #050505;
+    --surface: rgba(20, 20, 20, 0.4);
+    --surface-hover: rgba(30, 30, 30, 0.6);
+    --border: rgba(255, 255, 255, 0.06);
     --border-hover: rgba(255, 255, 255, 0.15);
     --accent-1: #6366f1; /* Indigo */
     --accent-2: #a855f7; /* Purple */
     --accent-3: #ec4899; /* Pink */
-    --text-primary: #f8fafc;
+    --text-primary: #ffffff;
     --text-secondary: #94a3b8;
   }
 
@@ -26,6 +26,7 @@
   html { 
     scroll-behavior: smooth; 
     font-size: 16px;
+    background-color: var(--bg);
   }
   
   body {
@@ -33,6 +34,7 @@
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    width: 100%;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
@@ -49,17 +51,17 @@
       pointer-events: none;
     }
     .cursor-dot {
-      width: 8px; height: 8px;
+      width: 6px; height: 6px;
       background-color: var(--text-primary);
     }
     .cursor-outline {
       width: 40px; height: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.4);
       transition: width 0.2s, height 0.2s, background-color 0.2s;
     }
     .cursor-outline.hovering {
       width: 60px; height: 60px;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(2px);
       border-color: transparent;
     }
@@ -71,11 +73,11 @@
   /* Typography */
   h1, h2, h3, h4, .font-syne {
     font-family: 'Syne', sans-serif;
-    line-height: 1.2;
+    line-height: 1.1;
   }
   
   .text-gradient {
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -93,76 +95,75 @@
     to { background-position: 200% center; }
   }
 
-  /* Background Mesh */
+  /* Background Elements */
   .mesh-bg {
     position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -1;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    z-index: -2;
     overflow: hidden;
-    background: var(--bg);
+    pointer-events: none;
   }
   .mesh-blob {
     position: absolute;
-    filter: blur(90px);
-    opacity: 0.4;
+    filter: blur(100px);
+    opacity: 0.3;
     border-radius: 50%;
     animation: floatBlob 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
   }
   .blob-1 {
-    top: -10%; left: -10%;
-    width: 50vw; height: 50vw;
-    background: radial-gradient(circle, var(--accent-1), transparent 70%);
+    top: -20%; left: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, var(--accent-1), transparent 60%);
   }
   .blob-2 {
     bottom: -20%; right: -10%;
-    width: 60vw; height: 60vw;
-    background: radial-gradient(circle, var(--accent-2), transparent 70%);
+    width: 70vw; height: 70vw;
+    background: radial-gradient(circle, var(--accent-2), transparent 60%);
     animation-delay: -5s;
   }
   .blob-3 {
-    top: 40%; left: 50%;
-    width: 40vw; height: 40vw;
-    background: radial-gradient(circle, var(--accent-3), transparent 70%);
+    top: 30%; left: 40%;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, var(--accent-3), transparent 60%);
     animation-delay: -10s;
   }
 
   @keyframes floatBlob {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(10%, 15%) scale(1.1); }
+    100% { transform: translate(10%, 15%) scale(1.2); }
   }
 
-  /* Noise Overlay */
   .noise {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.05"/%3E%3C/svg%3E');
+    position: fixed; inset: 0;
+    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.04"/%3E%3C/svg%3E');
     pointer-events: none; z-index: -1;
   }
 
   /* Layout */
   .container {
     width: 100%;
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 1.5rem;
   }
 
   section {
-    padding: 8rem 0;
+    padding: clamp(5rem, 10vw, 8rem) 0;
     position: relative;
   }
 
-  /* Navigation */
+  /* Header */
   header {
     position: fixed;
     top: 0; left: 0; width: 100%;
     z-index: 100;
     padding: 1.5rem 0;
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   header.scrolled {
     padding: 1rem 0;
-    background: rgba(3, 3, 3, 0.7);
-    backdrop-filter: blur(16px);
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
   .nav-container {
@@ -190,12 +191,13 @@
     font-weight: 500;
     transition: color 0.3s;
     position: relative;
+    padding: 0.5rem 0;
   }
   .nav-links a:hover { color: var(--text-primary); }
   .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -4px; left: 0; width: 0; height: 2px;
+    bottom: 0; left: 0; width: 0; height: 2px;
     background: var(--text-primary);
     transition: width 0.3s ease;
   }
@@ -205,7 +207,7 @@
     display: none;
     background: none; border: none;
     cursor: pointer;
-    width: 30px; height: 24px;
+    width: 32px; height: 24px;
     position: relative;
     z-index: 101;
   }
@@ -213,20 +215,21 @@
     position: absolute; left: 0;
     width: 100%; height: 2px;
     background: var(--text-primary);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
   }
   .menu-btn span:nth-child(1) { top: 0; }
   .menu-btn span:nth-child(2) { top: 11px; }
   .menu-btn span:nth-child(3) { bottom: 0; }
   .menu-btn.active span:nth-child(1) { transform: rotate(45deg); top: 11px; }
-  .menu-btn.active span:nth-child(2) { opacity: 0; }
+  .menu-btn.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
   .menu-btn.active span:nth-child(3) { transform: rotate(-45deg); bottom: 11px; }
 
   /* Mobile Nav Overlay */
   .mobile-nav {
     position: fixed; inset: 0;
-    background: rgba(3, 3, 3, 0.98);
-    backdrop-filter: blur(20px);
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(25px);
     z-index: 99;
     display: flex; flex-direction: column;
     justify-content: center; align-items: center;
@@ -234,30 +237,33 @@
     transition: opacity 0.4s ease;
   }
   .mobile-nav.active { opacity: 1; pointer-events: all; }
-  .mobile-nav ul { list-style: none; text-align: center; }
-  .mobile-nav li { margin: 1.5rem 0; transform: translateY(20px); opacity: 0; transition: all 0.4s ease; }
+  .mobile-nav ul { list-style: none; text-align: center; width: 100%; padding: 0 2rem; }
+  .mobile-nav li { margin: 1.5rem 0; transform: translateY(30px); opacity: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
   .mobile-nav.active li { transform: translateY(0); opacity: 1; }
   .mobile-nav.active li:nth-child(1) { transition-delay: 0.1s; }
-  .mobile-nav.active li:nth-child(2) { transition-delay: 0.2s; }
-  .mobile-nav.active li:nth-child(3) { transition-delay: 0.3s; }
-  .mobile-nav.active li:nth-child(4) { transition-delay: 0.4s; }
+  .mobile-nav.active li:nth-child(2) { transition-delay: 0.15s; }
+  .mobile-nav.active li:nth-child(3) { transition-delay: 0.2s; }
+  .mobile-nav.active li:nth-child(4) { transition-delay: 0.25s; }
+  .mobile-nav.active li:nth-child(5) { transition-delay: 0.3s; }
   
   .mobile-nav a {
+    display: block;
     font-family: 'Syne', sans-serif;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 8vw, 3rem);
     font-weight: 700;
     color: var(--text-secondary);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
+    padding: 0.5rem;
   }
-  .mobile-nav a:hover { color: var(--text-primary); }
+  .mobile-nav a:hover, .mobile-nav a:active { color: var(--text-primary); transform: scale(1.05); }
 
   /* Buttons */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     border-radius: 100px;
     font-weight: 600;
     font-size: 0.95rem;
@@ -265,29 +271,40 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
   }
+  .btn::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.5s ease;
+  }
+  .btn:hover::before { left: 100%; }
+  
   .btn-primary {
     background: var(--text-primary);
-    color: var(--bg);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
   }
   .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25);
   }
   .btn-outline {
     background: transparent;
-    border-color: var(--border);
+    border-color: rgba(255, 255, 255, 0.2);
     color: var(--text-primary);
+    backdrop-filter: blur(10px);
   }
   .btn-outline:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: var(--text-primary);
-    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
   }
 
   /* Hero Section */
   .hero {
-    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     padding-top: 6rem;
@@ -295,16 +312,16 @@
   .hero-content {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
+    gap: 3rem;
     align-items: center;
     width: 100%;
   }
   
   .status-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 8px 16px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border);
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 100px;
     font-size: 0.8rem;
     font-weight: 500;
@@ -327,20 +344,21 @@
   }
 
   .hero h1 {
-    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
     letter-spacing: -0.03em;
     margin-bottom: 1rem;
   }
   
   .hero-subtitle {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     font-weight: 400;
+    min-height: 2.2rem;
   }
   
   .hero-desc {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
     color: var(--text-secondary);
     max-width: 500px;
     margin-bottom: 2.5rem;
@@ -349,25 +367,38 @@
 
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-  .hero-image-wrapper {
+  .hero-image-container {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     margin: 0 auto;
+  }
+  .hero-image-glow {
+    position: absolute;
+    inset: -10%;
+    background: radial-gradient(circle, var(--accent-1), var(--accent-2), transparent 70%);
+    opacity: 0.4;
+    filter: blur(40px);
+    z-index: -1;
+    animation: pulseGlow 4s infinite alternate;
+  }
+  @keyframes pulseGlow {
+    0% { opacity: 0.2; transform: scale(0.95); }
+    100% { opacity: 0.5; transform: scale(1.05); }
+  }
+  .hero-image-wrapper {
+    position: relative;
     aspect-ratio: 4/5;
     border-radius: 24px;
     overflow: hidden;
-  }
-  .hero-image-wrapper::after {
-    content: ''; position: absolute; inset: 0;
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    pointer-events: none;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   }
   .hero-image {
     width: 100%; height: 100%;
     object-fit: cover;
-    filter: grayscale(20%) contrast(1.1);
+    filter: grayscale(15%) contrast(1.1);
     transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), filter 0.7s;
   }
   .hero-image-wrapper:hover .hero-image {
@@ -386,47 +417,65 @@
     margin-bottom: 1rem;
   }
   .section-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 4rem;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
     letter-spacing: -0.02em;
   }
 
-  /* Cards Setup */
+  /* Glass Card */
   .glass-card {
     background: var(--surface);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 2.5rem;
-    transition: all 0.4s ease;
+    border-radius: clamp(16px, 4vw, 24px);
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+  }
+  .glass-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+    opacity: 0; transition: opacity 0.4s;
+    pointer-events: none;
   }
   .glass-card:hover {
     background: var(--surface-hover);
     border-color: var(--border-hover);
     transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
   }
+  .glass-card:hover::before { opacity: 1; }
 
   /* Skills Section */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(1rem, 3vw, 1.5rem);
   }
   .skill-icon {
-    font-size: 2.5rem; margin-bottom: 1.5rem;
+    font-size: clamp(2rem, 5vw, 2.5rem); 
+    margin-bottom: 1.5rem;
+    display: inline-block;
   }
   .skill-title {
-    font-size: 1.5rem; margin-bottom: 1rem;
+    font-size: clamp(1.3rem, 3vw, 1.5rem); 
+    margin-bottom: 1rem;
+  }
+  .skill-desc {
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    margin-bottom: 1.5rem;
   }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .tag {
-    padding: 0.4rem 1rem;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 100px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
   }
 
@@ -434,7 +483,7 @@
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: clamp(1.5rem, 4vw, 2rem);
   }
   .project-card {
     display: flex; flex-direction: column;
@@ -443,43 +492,47 @@
   .project-card.featured {
     grid-column: 1 / -1;
     flex-direction: row;
-    gap: 3rem;
+    gap: clamp(2rem, 5vw, 3rem);
     align-items: center;
-    padding: 3rem;
   }
   .project-img-container {
     width: 100%;
     aspect-ratio: 16/9;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     background: #111;
+    position: relative;
   }
   .featured .project-img-container {
     margin-bottom: 0;
-    width: 50%;
+    width: 55%;
     flex-shrink: 0;
   }
   .project-img-container img {
     width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .project-card:hover .project-img-container img {
     transform: scale(1.05);
   }
-  .project-info { flex: 1; }
+  .project-info { flex: 1; display: flex; flex-direction: column; }
   .project-meta {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
   }
   .project-type {
-    font-size: 0.8rem; font-weight: 600; color: var(--accent-2);
+    font-size: 0.75rem; font-weight: 600; color: var(--accent-2);
     text-transform: uppercase; letter-spacing: 1px;
   }
-  .project-title { font-size: 2rem; margin-bottom: 1rem; }
+  .project-title { 
+    font-size: clamp(1.5rem, 4vw, 2rem); 
+    margin-bottom: 1rem; 
+  }
   .project-desc {
     color: var(--text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
   }
 
   /* Experience Section */
@@ -494,18 +547,19 @@
   }
   .timeline-item {
     position: relative;
-    padding-left: 4.5rem;
-    margin-bottom: 4rem;
+    padding-left: clamp(3.5rem, 8vw, 4.5rem);
+    margin-bottom: clamp(3rem, 8vw, 4rem);
   }
   .timeline-item:last-child { margin-bottom: 0; }
   .timeline-dot {
-    position: absolute; left: 0; top: 0.25rem;
+    position: absolute; left: 0; top: 0.2rem;
     width: 3rem; height: 3rem;
     background: var(--bg);
     border: 2px solid var(--accent-1);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     z-index: 2;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
   }
   .timeline-dot::after {
     content: ''; width: 0.75rem; height: 0.75rem;
@@ -513,18 +567,24 @@
   }
   .timeline-date {
     font-weight: 600; color: var(--accent-1);
-    margin-bottom: 0.5rem; font-size: 0.9rem;
+    margin-bottom: 0.5rem; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 1px;
   }
-  .timeline-role { font-size: 1.75rem; margin-bottom: 0.25rem; }
+  .timeline-role { font-size: clamp(1.3rem, 4vw, 1.75rem); margin-bottom: 0.25rem; }
   .timeline-company {
-    font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1rem;
+    font-size: clamp(1rem, 3vw, 1.1rem); color: var(--text-secondary); margin-bottom: 1rem;
   }
 
   /* Contact Section */
-  .contact-section { text-align: center; max-width: 600px; margin: 0 auto; }
+  .contact-section { 
+    text-align: center; 
+    max-width: 700px; 
+    margin: 0 auto; 
+    padding: clamp(2rem, 5vw, 4rem) 0;
+  }
   .contact-email {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.2rem, 5vw, 3rem);
     font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
@@ -532,63 +592,108 @@
     margin: 2rem 0;
     position: relative;
     transition: color 0.3s;
+    word-break: break-all; /* Crucial for mobile so email doesn't break layout */
   }
   .contact-email:hover { color: var(--accent-1); }
+  .contact-email::after {
+    content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 3px;
+    background: var(--accent-1); transition: width 0.3s ease;
+  }
+  .contact-email:hover::after { width: 100%; }
 
   /* Footer */
   footer {
-    padding: 3rem 5%;
+    padding: 2rem 1.5rem;
     border-top: 1px solid var(--border);
+    background: rgba(5,5,5,0.5);
+  }
+  .footer-content {
+    max-width: 1200px; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
     color: var(--text-secondary);
     font-size: 0.9rem;
   }
 
   /* Animations */
   .fade-up {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
-
   .delay-100 { transition-delay: 100ms; }
   .delay-200 { transition-delay: 200ms; }
   .delay-300 { transition-delay: 300ms; }
-  .delay-400 { transition-delay: 400ms; }
 
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .hero-content { gap: 2rem; }
+  /* -------------------------------------
+     📱 MOBILE & TABLET RESPONSIVE TWEAKS 
+     ------------------------------------- */
+  
+  /* Tablet / Small Laptop */
+  @media (max-width: 992px) {
+    .hero-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
     .project-card.featured {
-      flex-direction: column; padding: 2rem; gap: 2rem;
+      flex-direction: column;
+      align-items: stretch;
     }
-    .featured .project-img-container { width: 100%; }
+    .featured .project-img-container { width: 100%; margin-bottom: 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
   }
+
+  /* Mobile */
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .menu-btn { display: block; }
-    .hero-content {
-      grid-template-columns: 1fr;
+    
+    .hero {
+      padding-top: 7rem;
+      padding-bottom: 3rem;
       text-align: center;
     }
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
     .hero-actions { justify-content: center; }
-    .hero-image-wrapper { max-width: 300px; margin-top: 3rem; }
-    .projects-grid { grid-template-columns: 1fr; }
+    .hero-desc { margin: 0 auto 2.5rem; }
+    
+    /* Reorder hero items on mobile: image on top (optional, but looks good) */
+    .hero-text { order: 2; }
+    .hero-image-container { order: 1; max-width: 280px; }
+    
+    /* Make timeline fit perfectly on small screens */
     .timeline::before { left: 1rem; }
-    .timeline-dot { width: 2rem; height: 2rem; left: 0; top: 0.5rem; }
+    .timeline-dot { 
+      width: 2rem; height: 2rem; 
+      left: 0; top: 0.4rem; 
+    }
     .timeline-dot::after { width: 0.5rem; height: 0.5rem; }
-    .timeline-item { padding-left: 3.5rem; }
-    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+    }
+
+    /* Reduce background blob blur on mobile for performance */
+    .mesh-blob { filter: blur(60px); }
+  }
+
+  /* Extra small mobile */
+  @media (max-width: 400px) {
+    .hero-actions { flex-direction: column; width: 100%; }
+    .hero-actions .btn { width: 100%; }
+    .status-pill { padding: 6px 12px; font-size: 0.75rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- Custom Cursor -->
+<!-- Custom Cursor (Desktop Only) -->
 <div class="cursor-dot"></div>
 <div class="cursor-outline"></div>
 
-<!-- Background Elements -->
+<!-- Animated Background Elements -->
 <div class="mesh-bg">
   <div class="mesh-blob blob-1"></div>
   <div class="mesh-blob blob-2"></div>
@@ -612,7 +717,7 @@
   </div>
 </header>
 
-<!-- Mobile Navigation -->
+<!-- Mobile Navigation Menu -->
 <div class="mobile-nav" id="mobileNav">
   <ul>
     <li><a href="#about" class="mob-link">About</a></li>
@@ -626,8 +731,8 @@
 <!-- Main Content -->
 <main>
   <!-- Hero Section -->
-  <section id="about" class="hero container">
-    <div class="hero-content">
+  <section id="about" class="hero">
+    <div class="container hero-content">
       <div class="hero-text fade-up">
         <div class="status-pill">
           <div class="status-dot"></div>
@@ -646,115 +751,122 @@
           <a href="#contact" class="btn btn-outline">Contact Me</a>
         </div>
       </div>
-      <div class="hero-image-wrapper fade-up delay-200">
-        <img src="assets/images/adeel.png.jpeg" alt="Muhammad Adeel" class="hero-image">
+      <div class="hero-image-container fade-up delay-200">
+        <div class="hero-image-glow"></div>
+        <div class="hero-image-wrapper">
+          <img src="assets/images/adeel.png.jpeg" alt="Muhammad Adeel" class="hero-image">
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="container">
-    <span class="section-tag fade-up">01. Arsenal</span>
-    <h2 class="section-title fade-up">Technical Expertise</h2>
-    
-    <div class="skills-grid">
-      <div class="glass-card fade-up delay-100">
-        <div class="skill-icon">📱</div>
-        <h3 class="skill-title font-syne">Mobile Engineering</h3>
-        <p class="project-desc">Building cross-platform mobile apps that feel truly native, responsive, and buttery smooth.</p>
-        <div class="skill-tags">
-          <span class="tag">Flutter</span>
-          <span class="tag">Dart</span>
-          <span class="tag">Android</span>
-          <span class="tag">iOS</span>
-        </div>
-      </div>
+  <section id="skills">
+    <div class="container">
+      <span class="section-tag fade-up">01. Arsenal</span>
+      <h2 class="section-title fade-up">Technical Expertise</h2>
       
-      <div class="glass-card fade-up delay-200">
-        <div class="skill-icon">🏛️</div>
-        <h3 class="skill-title font-syne">Architecture & State</h3>
-        <p class="project-desc">Structuring robust, scalable, and testable codebases using modern design patterns.</p>
-        <div class="skill-tags">
-          <span class="tag">MVVM</span>
-          <span class="tag">Provider</span>
-          <span class="tag">Riverpod</span>
-          <span class="tag">BLoC</span>
+      <div class="skills-grid">
+        <div class="glass-card fade-up delay-100">
+          <div class="skill-icon">📱</div>
+          <h3 class="skill-title font-syne">Mobile Engineering</h3>
+          <p class="skill-desc">Building cross-platform mobile apps that feel truly native, responsive, and buttery smooth.</p>
+          <div class="skill-tags">
+            <span class="tag">Flutter</span>
+            <span class="tag">Dart</span>
+            <span class="tag">Android</span>
+            <span class="tag">iOS</span>
+          </div>
         </div>
-      </div>
-      
-      <div class="glass-card fade-up delay-300">
-        <div class="skill-icon">⚡</div>
-        <h3 class="skill-title font-syne">Backend Integration</h3>
-        <p class="project-desc">Connecting apps to real-time databases, authentication, and secure cloud functions.</p>
-        <div class="skill-tags">
-          <span class="tag">Firebase</span>
-          <span class="tag">MongoDB</span>
-          <span class="tag">REST APIs</span>
-          <span class="tag">Node.js</span>
+        
+        <div class="glass-card fade-up delay-200">
+          <div class="skill-icon">🏛️</div>
+          <h3 class="skill-title font-syne">Architecture & State</h3>
+          <p class="skill-desc">Structuring robust, scalable, and testable codebases using modern design patterns.</p>
+          <div class="skill-tags">
+            <span class="tag">MVVM</span>
+            <span class="tag">Provider</span>
+            <span class="tag">Riverpod</span>
+            <span class="tag">BLoC</span>
+          </div>
+        </div>
+        
+        <div class="glass-card fade-up delay-300">
+          <div class="skill-icon">⚡</div>
+          <h3 class="skill-title font-syne">Backend Integration</h3>
+          <p class="skill-desc">Connecting apps to real-time databases, authentication, and secure cloud functions.</p>
+          <div class="skill-tags">
+            <span class="tag">Firebase</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">Node.js</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="container">
-    <span class="section-tag fade-up">02. Portfolio</span>
-    <h2 class="section-title fade-up">Selected Works</h2>
-    
-    <div class="projects-grid">
-      <!-- Project 1 (Featured) -->
-      <div class="glass-card project-card featured fade-up delay-100">
-        <!-- We use a gradient placeholder here since no specific image was provided in original HTML -->
-        <div class="project-img-container" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
-           <img src="assets/images/salon.png" alt="Salon Manager App" style="opacity: 0.8;" onerror="this.style.display='none'">
-        </div>
-        <div class="project-info">
-          <div class="project-meta">
-            <span class="project-type">Live App • Business Tool</span>
+  <section id="projects">
+    <div class="container">
+      <span class="section-tag fade-up">02. Portfolio</span>
+      <h2 class="section-title fade-up">Selected Works</h2>
+      
+      <div class="projects-grid">
+        <!-- Project 1 (Featured) -->
+        <div class="glass-card project-card featured fade-up delay-100">
+          <!-- Placeholder background if image is missing -->
+          <div class="project-img-container" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+             <img src="assets/images/salon.png" alt="Salon Manager App" style="opacity: 0.8;" onerror="this.style.display='none'">
           </div>
-          <h3 class="project-title font-syne">Salon Manager App</h3>
-          <p class="project-desc">
-            A professional end-to-end management solution for salon businesses published on the Play Store. 
-            Features real-time booking, comprehensive service/inventory management, and a robust push notification system for both owners and clients.
-          </p>
-          <div class="skill-tags">
-            <span class="tag">Flutter</span>
-            <span class="tag">Firebase</span>
-            <span class="tag">Provider</span>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-type">Live App • Business Tool</span>
+            </div>
+            <h3 class="project-title font-syne">Salon Manager App</h3>
+            <p class="project-desc">
+              A professional end-to-end management solution for salon businesses published on the Play Store. 
+              Features real-time booking, comprehensive service/inventory management, and a robust push notification system for both owners and clients.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">Provider</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Project 2 -->
-      <div class="glass-card project-card fade-up delay-100">
-        <div class="project-info">
-          <div class="project-meta">
-            <span class="project-type">Enterprise App</span>
-          </div>
-          <h3 class="project-title font-syne">Divine Employee</h3>
-          <p class="project-desc">
-            Enterprise-level employee management platform featuring secure authentication, tracking, and seamless team communication via Firebase.
-          </p>
-          <div class="skill-tags" style="margin-top: auto;">
-            <span class="tag">Flutter</span>
-            <span class="tag">Firebase Admin</span>
+        <!-- Project 2 -->
+        <div class="glass-card project-card fade-up delay-100">
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-type">Enterprise App</span>
+            </div>
+            <h3 class="project-title font-syne">Divine Employee</h3>
+            <p class="project-desc">
+              Enterprise-level employee management platform featuring secure authentication, tracking, and seamless team communication via Firebase.
+            </p>
+            <div class="skill-tags" style="margin-top: auto;">
+              <span class="tag">Flutter</span>
+              <span class="tag">Firebase Admin</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Project 3 -->
-      <div class="glass-card project-card fade-up delay-200">
-        <div class="project-info">
-          <div class="project-meta">
-            <span class="project-type">Desktop App</span>
-          </div>
-          <h3 class="project-title font-syne">Bilty Desktop</h3>
-          <p class="project-desc">
-            A specialized Windows/macOS desktop application for logistics management. Handles complex shipment records, custom report generation, and daily workflows.
-          </p>
-          <div class="skill-tags" style="margin-top: auto;">
-            <span class="tag">Flutter Desktop</span>
-            <span class="tag">MongoDB</span>
+        <!-- Project 3 -->
+        <div class="glass-card project-card fade-up delay-200">
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-type">Desktop App</span>
+            </div>
+            <h3 class="project-title font-syne">Bilty Desktop</h3>
+            <p class="project-desc">
+              A specialized Windows/macOS desktop application for logistics management. Handles complex shipment records, custom report generation, and daily workflows.
+            </p>
+            <div class="skill-tags" style="margin-top: auto;">
+              <span class="tag">Flutter Desktop</span>
+              <span class="tag">MongoDB</span>
+            </div>
           </div>
         </div>
       </div>
@@ -762,62 +874,68 @@
   </section>
 
   <!-- Experience Section -->
-  <section id="experience" class="container">
-    <span class="section-tag fade-up">03. Journey</span>
-    <h2 class="section-title fade-up">Experience</h2>
-    
-    <div class="timeline">
-      <div class="timeline-item fade-up delay-100">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2024 — Present</div>
-        <h3 class="timeline-role font-syne">Flutter Developer</h3>
-        <div class="timeline-company">Mobile App Development</div>
-        <p class="project-desc">
-          Designing and engineering cross-platform mobile apps. Architecting scalable solutions using MVVM, integrating Firebase services, and managing complex state. Published full-scale applications to the Google Play Store.
-        </p>
-      </div>
+  <section id="experience">
+    <div class="container">
+      <span class="section-tag fade-up">03. Journey</span>
+      <h2 class="section-title fade-up">Experience</h2>
       
-      <div class="timeline-item fade-up delay-200">
-        <div class="timeline-dot" style="border-color: var(--accent-2);"></div>
-        <div class="timeline-date" style="color: var(--accent-2);">2023 — 2024</div>
-        <h3 class="timeline-role font-syne">Dart & UI Specialist</h3>
-        <div class="timeline-company">Self-Directed & Open Source</div>
-        <p class="project-desc">
-          Mastered Dart fundamentals and Flutter UI rendering system. Contributed to "Logic Hub" — a library of Dart algorithms. Built numerous UI clones and interactive prototypes.
-        </p>
+      <div class="timeline">
+        <div class="timeline-item fade-up delay-100">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024 — Present</div>
+          <h3 class="timeline-role font-syne">Flutter Developer</h3>
+          <div class="timeline-company">Mobile App Development</div>
+          <p class="skill-desc">
+            Designing and engineering cross-platform mobile apps. Architecting scalable solutions using MVVM, integrating Firebase services, and managing complex state. Published full-scale applications to the Google Play Store.
+          </p>
+        </div>
+        
+        <div class="timeline-item fade-up delay-200">
+          <div class="timeline-dot" style="border-color: var(--accent-2);"></div>
+          <div class="timeline-date" style="color: var(--accent-2);">2023 — 2024</div>
+          <h3 class="timeline-role font-syne">Dart & UI Specialist</h3>
+          <div class="timeline-company">Self-Directed & Open Source</div>
+          <p class="skill-desc">
+            Mastered Dart fundamentals and Flutter UI rendering system. Contributed to "Logic Hub" — a library of Dart algorithms. Built numerous UI clones and interactive prototypes.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="container" style="padding-bottom: 8rem;">
-    <div class="contact-section fade-up">
-      <span class="section-tag">04. What's Next?</span>
-      <h2 class="section-title">Let's build together.</h2>
-      <p class="project-desc" style="margin: 0 auto 2rem; max-width: 500px;">
-        I'm currently looking for new opportunities. Whether you have a project in mind or just want to connect, my inbox is always open.
-      </p>
-      <a href="mailto:muhammmadadeel64@gmail.com" class="contact-email">
-        muhammmadadeel64@gmail.com
-      </a>
-      <div style="margin-top: 3rem;">
-        <a href="https://linkedin.com/in/muhammad-adeel-864b7b381" target="_blank" class="btn btn-primary">
-          Connect on LinkedIn
-        </a>
+  <section id="contact">
+    <div class="container">
+      <div class="contact-section glass-card fade-up">
+        <span class="section-tag" style="margin-bottom: 0.5rem;">04. What's Next?</span>
+        <h2 class="section-title" style="margin-bottom: 1rem;">Let's build together.</h2>
+        <p class="skill-desc" style="margin: 0 auto; max-width: 500px;">
+          I'm currently looking for new opportunities. Whether you have a project in mind or just want to connect, my inbox is always open.
+        </p>
+        <div style="margin: 2.5rem 0;">
+          <a href="mailto:muhammmadadeel64@gmail.com" class="contact-email">
+            muhammmadadeel64@gmail.com
+          </a>
+        </div>
+        <div>
+          <a href="https://linkedin.com/in/muhammad-adeel-864b7b381" target="_blank" class="btn btn-primary" style="width: auto;">
+            Connect on LinkedIn
+          </a>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+  <div class="footer-content">
     <div>© 2025 Muhammad Adeel. Built with passion.</div>
-    <div class="font-syne">"Code as beautiful as the UI it powers."</div>
+    <div class="font-syne" style="color: var(--accent-2);">"Code as beautiful as the UI it powers."</div>
   </div>
 </footer>
 
 <script>
-  // Custom Cursor
+  // Custom Cursor (Desktop only to prevent mobile touch issues)
   const cursorDot = document.querySelector('.cursor-dot');
   const cursorOutline = document.querySelector('.cursor-outline');
   
@@ -852,7 +970,7 @@
     }
   });
 
-  // Mobile Menu
+  // Mobile Menu Logic
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
   const mobLinks = document.querySelectorAll('.mob-link');
@@ -860,24 +978,30 @@
   function toggleMenu() {
     menuBtn.classList.toggle('active');
     mobileNav.classList.toggle('active');
-    document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    // Prevent scrolling when menu is open on mobile
+    if(mobileNav.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 
   menuBtn.addEventListener('click', toggleMenu);
-  mobLinks.forEach(link => link.addEventListener('click', toggleMenu));
+  mobLinks.forEach(link => link.addEventListener('click', () => {
+    if (mobileNav.classList.contains('active')) toggleMenu();
+  }));
 
   // Scroll Animations (Intersection Observer)
   const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.15
+    threshold: 0.1
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // observer.unobserve(entry.target); // Uncomment to animate only once
       }
     });
   }, observerOptions);
@@ -904,7 +1028,7 @@
       charIndex++;
     }
 
-    let typeSpeed = isDeleting ? 50 : 100;
+    let typeSpeed = isDeleting ? 40 : 80;
 
     if (!isDeleting && charIndex === currentText.length) {
       typeSpeed = 2000; // Pause at end
