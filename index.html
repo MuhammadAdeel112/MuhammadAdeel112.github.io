@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Muhammad Adeel | Flutter Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,7 @@
     scroll-behavior: smooth; 
     font-size: 16px;
     background-color: var(--bg);
+    -webkit-text-size-adjust: 100%;
   }
   
   body {
@@ -36,8 +37,21 @@
     font-family: 'Outfit', sans-serif;
     overflow-x: hidden;
     width: 100%;
+    min-width: 0;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+  }
+
+  img, svg, video {
+    max-width: 100%;
+    display: block;
+  }
+  img {
+    height: auto;
+  }
+  .hero-image,
+  .project-img-container img {
+    height: 100%;
   }
 
   /* Custom Cursor */
@@ -139,12 +153,14 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 clamp(1rem, 4vw, 1.5rem);
   }
 
   section {
-    padding: clamp(5rem, 10vw, 8rem) 0;
+    padding: clamp(3.5rem, 8vw, 8rem) 0;
     position: relative;
+    width: 100%;
+    overflow-x: clip;
   }
 
   /* Header */
@@ -549,7 +565,7 @@
   /* Skills Section */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
     gap: clamp(1rem, 3vw, 1.5rem);
   }
   .skill-title {
@@ -682,22 +698,23 @@
 
   /* Experience Section */
   .timeline {
-    max-width: 800px; margin: 0 auto;
+    max-width: 860px; margin: 0 auto;
     position: relative;
   }
   .timeline::before {
     content: ''; position: absolute;
     top: 0; bottom: 0; left: 1.5rem; width: 2px;
-    background: var(--border);
+    background: linear-gradient(to bottom, var(--accent-1), var(--accent-2), transparent);
+    opacity: 0.45;
   }
   .timeline-item {
     position: relative;
     padding-left: clamp(3.5rem, 8vw, 4.5rem);
-    margin-bottom: clamp(3rem, 8vw, 4rem);
+    margin-bottom: clamp(2rem, 5vw, 2.75rem);
   }
   .timeline-item:last-child { margin-bottom: 0; }
   .timeline-dot {
-    position: absolute; left: 0; top: 0.2rem;
+    position: absolute; left: 0; top: 1.35rem;
     width: 3rem; height: 3rem;
     background: var(--bg);
     border: 2px solid var(--accent-1);
@@ -710,22 +727,82 @@
     content: ''; width: 0.75rem; height: 0.75rem;
     background: var(--accent-1); border-radius: 50%;
   }
+  .timeline-dot.dot-sky {
+    border-color: var(--accent-2);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+  }
+  .timeline-dot.dot-sky::after { background: var(--accent-2); }
+  .timeline-dot.dot-muted {
+    border-color: #64748b;
+    box-shadow: none;
+  }
+  .timeline-dot.dot-muted::after { background: #64748b; }
+
+  .timeline-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s, transform 0.3s, background 0.3s;
+  }
+  .timeline-card:hover {
+    border-color: var(--border-hover);
+    background: var(--surface-hover);
+    transform: translateY(-2px);
+  }
   .timeline-date {
     font-weight: 600; color: var(--accent-1);
-    margin-bottom: 0.5rem; font-size: 0.85rem;
-    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 0.45rem; font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 1.2px;
   }
-  .timeline-role { font-size: clamp(1.3rem, 4vw, 1.75rem); margin-bottom: 0.25rem; }
+  .timeline-date.date-sky { color: var(--accent-2); }
+  .timeline-date.date-muted { color: #94a3b8; }
+  .timeline-role {
+    font-size: clamp(1.25rem, 3.5vw, 1.55rem);
+    margin-bottom: 0.2rem;
+  }
   .timeline-company {
-    font-size: clamp(1rem, 3vw, 1.1rem); color: var(--text-secondary); margin-bottom: 1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    color: var(--text-secondary);
+    margin-bottom: 0.9rem;
   }
+  .timeline-card .skill-desc {
+    margin-bottom: 1rem;
+  }
+  .timeline-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-bottom: 1.1rem;
+  }
+  .timeline-points li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--text-secondary);
+    font-size: clamp(0.88rem, 2vw, 0.95rem);
+    line-height: 1.55;
+  }
+  .timeline-points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-1);
+    opacity: 0.85;
+  }
+  .timeline-card .skill-tags { margin-top: 0; }
 
   /* Contact Section */
   .contact-section { 
     text-align: center; 
     max-width: 700px; 
     margin: 0 auto; 
-    padding: clamp(2rem, 5vw, 4rem) 0;
+    padding: clamp(1.75rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2.5rem) !important;
   }
   .contact-email {
     font-family: 'Syne', sans-serif;
@@ -748,7 +825,8 @@
 
   /* Footer */
   footer {
-    padding: 2rem 1.5rem;
+    padding: 2rem clamp(1rem, 4vw, 1.5rem);
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
     border-top: 1px solid var(--border);
     background: rgba(5,5,5,0.5);
   }
@@ -771,12 +849,41 @@
   .delay-300 { transition-delay: 300ms; }
 
   /* -------------------------------------
-     📱 MOBILE & TABLET RESPONSIVE TWEAKS 
+     RESPONSIVE — Laptop / Tablet / Mobile
      ------------------------------------- */
-  
-  /* Tablet / Small Laptop */
+
+  /* Large laptop */
+  @media (max-width: 1200px) {
+    .hero-content {
+      gap: 2.5rem;
+    }
+    .portrait-ring {
+      width: min(100%, 300px);
+    }
+  }
+
+  /* Tablet landscape / small laptop */
   @media (max-width: 992px) {
-    .hero-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .nav-links a { font-size: 0.85rem; }
+
+    .hero {
+      min-height: auto;
+      padding-top: 6.5rem;
+      padding-bottom: 3.5rem;
+    }
+    .hero-content {
+      grid-template-columns: 1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+    }
+    .portrait-ring {
+      width: min(100%, 280px);
+    }
+
     .project-card.featured {
       grid-template-columns: 1fr;
     }
@@ -785,57 +892,250 @@
       border-right: none;
       border-bottom: 1px solid var(--border);
     }
-    .projects-grid { grid-template-columns: 1fr; }
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline {
+      max-width: 100%;
+    }
   }
 
-  /* Mobile */
+  /* Tablet portrait / large phone */
   @media (max-width: 768px) {
     .nav-links { display: none; }
-    .menu-btn { display: block; }
-    
+    .menu-btn {
+      display: block;
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    header {
+      padding: 1rem 0;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
     .hero {
-      padding-top: 7rem;
-      padding-bottom: 3rem;
+      min-height: auto;
+      padding-top: calc(5.5rem + env(safe-area-inset-top));
+      padding-bottom: 2.5rem;
       text-align: center;
     }
     .hero-content {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 2rem;
     }
-    .hero-actions { justify-content: center; }
-    .hero-desc { margin: 0 auto 1.75rem; }
-    .hero-stack { justify-content: center; }
-    .hero-socials { margin-left: 0; }
-    
-    /* Reorder hero items on mobile: portrait on top */
     .hero-text { order: 2; }
-    .hero-image-container { order: 1; max-width: 260px; }
-    .portrait-ring { width: min(100%, 260px); }
-    .portrait-caption { margin-top: 1.1rem; }
-    
-    /* Make timeline fit perfectly on small screens */
-    .timeline::before { left: 1rem; }
-    .timeline-dot { 
-      width: 2rem; height: 2rem; 
-      left: 0; top: 0.4rem; 
+    .hero-image-container {
+      order: 1;
+      max-width: 240px;
     }
-    .timeline-dot::after { width: 0.5rem; height: 0.5rem; }
-    
+    .portrait-ring { width: min(100%, 240px); }
+    .portrait-caption { margin-top: 1rem; }
+
+    .hero-actions {
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .hero-desc {
+      margin: 0 auto 1.5rem;
+      max-width: 36rem;
+    }
+    .hero-stack {
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .hero-socials { margin-left: 0; }
+    .status-pill { margin-bottom: 1.25rem; }
+
+    .btn {
+      padding: 0.9rem 1.75rem;
+      font-size: 0.9rem;
+    }
+
+    .section-title {
+      margin-bottom: 2rem;
+    }
+
+    .glass-card:hover {
+      transform: none;
+    }
+    .project-card:hover .project-img-container img {
+      transform: none;
+    }
+    .portrait-ring:hover .hero-image {
+      transform: scale(1.08);
+    }
+
+    .timeline::before { left: 0.85rem; }
+    .timeline-item {
+      padding-left: 3rem;
+    }
+    .timeline-dot {
+      width: 1.75rem;
+      height: 1.75rem;
+      left: 0;
+      top: 1.4rem;
+    }
+    .timeline-dot::after {
+      width: 0.45rem;
+      height: 0.45rem;
+    }
+    .timeline-card {
+      padding: 1.15rem;
+    }
+
+    .contact-section {
+      padding: 1.5rem 1rem !important;
+    }
+    .contact-email {
+      font-size: clamp(1rem, 5.5vw, 1.5rem);
+      margin: 1.25rem 0;
+    }
+
     .footer-content {
       flex-direction: column;
       text-align: center;
       justify-content: center;
+      gap: 0.5rem;
     }
 
-    /* Reduce background blob blur on mobile for performance */
-    .mesh-blob { filter: blur(60px); }
+    .mesh-blob { filter: blur(50px); opacity: 0.22; }
+    .blob-1, .blob-2, .blob-3 {
+      width: 70vw;
+      height: 70vw;
+    }
   }
 
-  /* Extra small mobile */
-  @media (max-width: 400px) {
-    .hero-actions { flex-direction: column; width: 100%; }
-    .hero-actions .btn { width: 100%; }
-    .status-pill { padding: 6px 12px; font-size: 0.75rem; }
+  /* Mobile */
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 11vw, 2.8rem);
+      line-height: 1.05;
+    }
+    .hero-subtitle {
+      font-size: 1.1rem;
+      min-height: 1.8rem;
+    }
+    .hero-image-container { max-width: 200px; }
+    .portrait-ring { width: min(100%, 200px); }
+
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+      align-items: stretch;
+    }
+    .hero-actions .btn {
+      width: 100%;
+    }
+    .hero-socials {
+      justify-content: center;
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+
+    .status-pill {
+      padding: 6px 12px;
+      font-size: 0.72rem;
+      max-width: 100%;
+    }
+
+    .hero-stack span {
+      font-size: 0.68rem;
+      padding: 0.3rem 0.55rem;
+    }
+
+    .glass-card {
+      padding: 1.25rem;
+      border-radius: 16px;
+    }
+
+    .project-img-container {
+      aspect-ratio: 16/11;
+    }
+    .featured .project-img-container {
+      min-height: 180px;
+    }
+    .project-info {
+      padding: 1.1rem;
+    }
+    .featured .project-info {
+      padding: 1.1rem;
+    }
+
+    .mobile-nav a {
+      font-size: clamp(1.6rem, 7vw, 2.2rem);
+    }
+    .mobile-nav li { margin: 1rem 0; }
+  }
+
+  /* Extra small phones */
+  @media (max-width: 360px) {
+    .hero-image-container { max-width: 170px; }
+    .portrait-ring { width: min(100%, 170px); }
+    .timeline-item { padding-left: 2.6rem; }
+    .tag {
+      font-size: 0.72rem;
+      padding: 0.3rem 0.6rem;
+    }
+  }
+
+  /* Short landscape phones / small height */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+      min-height: auto;
+      padding-top: 5rem;
+      padding-bottom: 2rem;
+    }
+    .hero-content {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.5rem;
+      text-align: left;
+    }
+    .hero-text { order: 0; }
+    .hero-image-container {
+      order: 0;
+      max-width: 160px;
+    }
+    .portrait-ring { width: min(100%, 160px); }
+    .portrait-caption { display: none; }
+    .hero-stack { display: none; }
+    .hero-actions,
+    .hero-stack { justify-content: flex-start; }
+    .hero-desc { margin-left: 0; text-align: left; }
+  }
+
+  /* Prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .fade-up {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Touch devices: disable hover lift that feels sticky */
+  @media (hover: none) {
+    .glass-card:hover {
+      transform: none;
+    }
+    .btn-primary:hover,
+    .btn-outline:hover {
+      transform: none;
+    }
   }
 </style>
 </head>
@@ -862,6 +1162,7 @@
       <li><a href="#skills">Expertise</a></li>
       <li><a href="#projects">Work</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="menu-btn" id="menuBtn" aria-label="Toggle Menu">
       <span></span><span></span><span></span>
@@ -1125,22 +1426,74 @@
       <div class="timeline">
         <div class="timeline-item fade-up delay-100">
           <div class="timeline-dot"></div>
-          <div class="timeline-date">2024 — Present</div>
-          <h3 class="timeline-role font-syne">Flutter Developer</h3>
-          <div class="timeline-company">Client & Product Apps</div>
-          <p class="skill-desc">
-            Building and shipping cross-platform mobile apps for clients — employee tools, booking systems, secure access, and payment workflows. Focused on MVVM architecture, Firebase, REST APIs, and production-ready Android releases.
-          </p>
+          <div class="timeline-card">
+            <div class="timeline-date">2024 — Present</div>
+            <h3 class="timeline-role font-syne">Flutter Developer</h3>
+            <div class="timeline-company">Client Projects · Android Apps</div>
+            <p class="skill-desc">
+              Delivering production Flutter apps for business clients — from requirements to release-ready Android builds.
+            </p>
+            <ul class="timeline-points">
+              <li>Built <strong style="color: var(--text-primary); font-weight: 500;">PayLock</strong> — EMI device locking with auth and real-time payment status</li>
+              <li>Developed <strong style="color: var(--text-primary); font-weight: 500;">Divine Employee</strong> — job assignment, task completion, and push notifications</li>
+              <li>Shipped <strong style="color: var(--text-primary); font-weight: 500;">Door Pop</strong> — smart door access and visitor management</li>
+              <li>Delivered <strong style="color: var(--text-primary); font-weight: 500;">Salon Manager</strong> — booking and salon operations for owners and customers</li>
+            </ul>
+            <div class="skill-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">REST API</span>
+              <span class="tag">Provider</span>
+              <span class="tag">MVVM</span>
+            </div>
+          </div>
         </div>
         
         <div class="timeline-item fade-up delay-200">
-          <div class="timeline-dot" style="border-color: var(--accent-2);"></div>
-          <div class="timeline-date" style="color: var(--accent-2);">2023 — 2024</div>
-          <h3 class="timeline-role font-syne">Flutter & Dart Developer</h3>
-          <div class="timeline-company">Independent Projects</div>
-          <p class="skill-desc">
-            Strengthened Flutter fundamentals through real apps including test prep, data dashboards, and UI prototypes. Practiced clean structure, API integration, and state management with Provider.
-          </p>
+          <div class="timeline-dot dot-sky"></div>
+          <div class="timeline-card">
+            <div class="timeline-date date-sky">2023 — 2024</div>
+            <h3 class="timeline-role font-syne">Flutter Developer</h3>
+            <div class="timeline-company">Independent & Product Apps</div>
+            <p class="skill-desc">
+              Built end-to-end mobile apps to strengthen architecture, API integration, and state management skills.
+            </p>
+            <ul class="timeline-points">
+              <li>Created <strong style="color: var(--text-primary); font-weight: 500;">MDCAT Preparation</strong> — MCQs, mock tests, and results with MVVM + Provider</li>
+              <li>Built <strong style="color: var(--text-primary); font-weight: 500;">Corona Tracker</strong> — worldwide and country-wise COVID-19 stats via REST APIs</li>
+              <li>Practiced clean UI, API consumption, and scalable Flutter project structure</li>
+            </ul>
+            <div class="skill-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Dart</span>
+              <span class="tag">REST API</span>
+              <span class="tag">Provider</span>
+              <span class="tag">MVVM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-up delay-300">
+          <div class="timeline-dot dot-muted"></div>
+          <div class="timeline-card">
+            <div class="timeline-date date-muted">Foundation</div>
+            <h3 class="timeline-role font-syne">Mobile Development Focus</h3>
+            <div class="timeline-company">Learning · Practice · Prototypes</div>
+            <p class="skill-desc">
+              Built a strong base in Dart and Flutter UI — layouts, navigation, forms, and backend basics — before taking on client work.
+            </p>
+            <ul class="timeline-points">
+              <li>Mastered Flutter widgets, navigation, and responsive layouts</li>
+              <li>Learned Firebase Auth, Firestore, and REST API integration patterns</li>
+              <li>Shipped personal prototypes that led into real client projects</li>
+            </ul>
+            <div class="skill-tags">
+              <span class="tag">Dart</span>
+              <span class="tag">Flutter UI</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">Git</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
