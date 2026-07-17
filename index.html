@@ -6,18 +6,19 @@
 <title>Muhammad Adeel | Flutter Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg: #050505;
-    --surface: rgba(20, 20, 20, 0.4);
-    --surface-hover: rgba(30, 30, 30, 0.6);
-    --border: rgba(255, 255, 255, 0.06);
-    --border-hover: rgba(255, 255, 255, 0.15);
-    --accent-1: #6366f1; /* Indigo */
-    --accent-2: #a855f7; /* Purple */
-    --accent-3: #ec4899; /* Pink */
-    --text-primary: #ffffff;
+    --bg: #07090c;
+    --bg-elevated: #0d1117;
+    --surface: rgba(18, 22, 28, 0.65);
+    --surface-hover: rgba(26, 32, 42, 0.8);
+    --border: rgba(255, 255, 255, 0.07);
+    --border-hover: rgba(255, 255, 255, 0.16);
+    --accent-1: #2dd4bf; /* Teal */
+    --accent-2: #38bdf8; /* Sky */
+    --accent-3: #94a3b8;
+    --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
   }
 
@@ -32,7 +33,7 @@
   body {
     background-color: var(--bg);
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
     overflow-x: hidden;
     width: 100%;
     line-height: 1.6;
@@ -77,22 +78,16 @@
   }
   
   .text-gradient {
-    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 55%, #94a3b8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
   }
   .text-gradient-accent {
-    background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
-    background-size: 200% auto;
-    animation: shine 4s linear infinite;
-  }
-
-  @keyframes shine {
-    to { background-position: 200% center; }
   }
 
   /* Background Elements */
@@ -112,19 +107,19 @@
   }
   .blob-1 {
     top: -20%; left: -10%;
-    width: 60vw; height: 60vw;
-    background: radial-gradient(circle, var(--accent-1), transparent 60%);
+    width: 55vw; height: 55vw;
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.35), transparent 65%);
   }
   .blob-2 {
-    bottom: -20%; right: -10%;
-    width: 70vw; height: 70vw;
-    background: radial-gradient(circle, var(--accent-2), transparent 60%);
+    bottom: -25%; right: -15%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 65%);
     animation-delay: -5s;
   }
   .blob-3 {
-    top: 30%; left: 40%;
-    width: 50vw; height: 50vw;
-    background: radial-gradient(circle, var(--accent-3), transparent 60%);
+    top: 35%; left: 45%;
+    width: 40vw; height: 40vw;
+    background: radial-gradient(circle, rgba(148, 163, 184, 0.18), transparent 65%);
     animation-delay: -10s;
   }
 
@@ -162,7 +157,7 @@
   }
   header.scrolled {
     padding: 1rem 0;
-    background: rgba(5, 5, 5, 0.8);
+    background: rgba(7, 9, 12, 0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
@@ -228,7 +223,7 @@
   /* Mobile Nav Overlay */
   .mobile-nav {
     position: fixed; inset: 0;
-    background: rgba(5, 5, 5, 0.98);
+    background: rgba(7, 9, 12, 0.98);
     backdrop-filter: blur(25px);
     z-index: 99;
     display: flex; flex-direction: column;
@@ -282,13 +277,13 @@
   .btn:hover::before { left: 100%; }
   
   .btn-primary {
-    background: var(--text-primary);
-    color: #000;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    color: #0a0f14;
+    box-shadow: 0 4px 20px rgba(45, 212, 191, 0.15);
   }
   .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25);
+    box-shadow: 0 12px 28px rgba(45, 212, 191, 0.25);
   }
   .btn-outline {
     background: transparent;
@@ -308,102 +303,204 @@
     display: flex;
     align-items: center;
     padding-top: 6rem;
+    padding-bottom: 3rem;
   }
   .hero-content {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 3rem;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 6vw, 4.5rem);
     align-items: center;
     width: 100%;
   }
   
   .status-pill {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 8px 18px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
+    padding: 8px 16px;
+    background: rgba(45, 212, 191, 0.08);
+    border: 1px solid rgba(45, 212, 191, 0.22);
     border-radius: 100px;
     font-size: 0.8rem;
     font-weight: 500;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
+    color: #99f6e4;
+    margin-bottom: 1.75rem;
     backdrop-filter: blur(10px);
   }
   .status-dot {
     width: 8px; height: 8px;
-    background: #10b981;
+    background: #2dd4bf;
     border-radius: 50%;
-    box-shadow: 0 0 12px #10b981;
+    box-shadow: 0 0 12px #2dd4bf;
     animation: pulse 2s infinite;
   }
 
   @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(45, 212, 191, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0); }
   }
 
   .hero h1 {
-    font-size: clamp(2.5rem, 7vw, 5.5rem);
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
+    font-size: clamp(2.8rem, 7.5vw, 5.2rem);
+    letter-spacing: -0.04em;
+    margin-bottom: 0.85rem;
+    font-weight: 800;
   }
   
   .hero-subtitle {
-    font-size: clamp(1.1rem, 4vw, 1.8rem);
+    font-size: clamp(1.15rem, 3.5vw, 1.65rem);
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-weight: 400;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
     min-height: 2.2rem;
+  }
+
+  .cursor-type {
+    color: var(--accent-1);
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
   }
   
   .hero-desc {
-    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    font-size: clamp(1rem, 2.2vw, 1.12rem);
     color: var(--text-secondary);
-    max-width: 500px;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 1.75rem;
+    line-height: 1.75;
+    font-weight: 400;
   }
 
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .hero-stack span {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.02);
+  }
 
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+  .hero-socials {
+    display: flex;
+    gap: 0.75rem;
+    margin-left: 0.25rem;
+  }
+  .hero-socials a {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.02);
+    text-decoration: none;
+    transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.3s;
+  }
+  .hero-socials a:hover {
+    color: var(--text-primary);
+    border-color: rgba(45, 212, 191, 0.4);
+    background: rgba(45, 212, 191, 0.08);
+    transform: translateY(-2px);
+  }
+  .hero-socials svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  /* Premium Profile Portrait */
   .hero-image-container {
     position: relative;
     width: 100%;
-    max-width: 420px;
+    max-width: 380px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .hero-image-glow {
     position: absolute;
-    inset: -10%;
-    background: radial-gradient(circle, var(--accent-1), var(--accent-2), transparent 70%);
-    opacity: 0.4;
-    filter: blur(40px);
-    z-index: -1;
-    animation: pulseGlow 4s infinite alternate;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.35) 0%, rgba(56, 189, 248, 0.15) 40%, transparent 70%);
+    filter: blur(50px);
+    z-index: 0;
+    animation: pulseGlow 5s ease-in-out infinite alternate;
   }
   @keyframes pulseGlow {
-    0% { opacity: 0.2; transform: scale(0.95); }
-    100% { opacity: 0.5; transform: scale(1.05); }
+    0% { opacity: 0.45; transform: scale(0.96); }
+    100% { opacity: 0.85; transform: scale(1.05); }
   }
+
+  .portrait-ring {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 340px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 4px;
+    background: conic-gradient(from 180deg, var(--accent-1), var(--accent-2), #64748b, var(--accent-1));
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.06),
+      0 30px 60px -20px rgba(0, 0, 0, 0.7),
+      0 0 40px rgba(45, 212, 191, 0.15);
+  }
+
   .hero-image-wrapper {
     position: relative;
-    aspect-ratio: 4/5;
-    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
     overflow: hidden;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background: #0d1117;
+    border: 4px solid var(--bg);
   }
   .hero-image {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    filter: grayscale(15%) contrast(1.1);
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), filter 0.7s;
+    object-position: center 18%;
+    transform: scale(1.08);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s;
+    filter: contrast(1.05) saturate(1.05);
   }
-  .hero-image-wrapper:hover .hero-image {
-    transform: scale(1.05);
-    filter: grayscale(0%) contrast(1.1);
+  .portrait-ring:hover .hero-image {
+    transform: scale(1.14);
+    filter: contrast(1.08) saturate(1.1);
+  }
+
+  .portrait-caption {
+    margin-top: 1.5rem;
+    text-align: center;
+    z-index: 1;
+  }
+  .portrait-caption strong {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+  }
+  .portrait-caption span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
   }
 
   /* Section Headers */
@@ -574,8 +671,8 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1.25rem;
-    background: rgba(99, 102, 241, 0.12);
-    border: 1px solid rgba(99, 102, 241, 0.25);
+    background: rgba(45, 212, 191, 0.1);
+    border: 1px solid rgba(45, 212, 191, 0.25);
     color: var(--accent-1);
     font-family: 'Syne', sans-serif;
     font-weight: 700;
@@ -607,7 +704,7 @@
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     z-index: 2;
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 0 15px rgba(45, 212, 191, 0.2);
   }
   .timeline-dot::after {
     content: ''; width: 0.75rem; height: 0.75rem;
@@ -632,7 +729,7 @@
   }
   .contact-email {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.2rem, 5vw, 3rem);
+    font-size: clamp(1.2rem, 5vw, 2.4rem);
     font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
@@ -706,11 +803,15 @@
       gap: 3rem;
     }
     .hero-actions { justify-content: center; }
-    .hero-desc { margin: 0 auto 2.5rem; }
+    .hero-desc { margin: 0 auto 1.75rem; }
+    .hero-stack { justify-content: center; }
+    .hero-socials { margin-left: 0; }
     
-    /* Reorder hero items on mobile: image on top (optional, but looks good) */
+    /* Reorder hero items on mobile: portrait on top */
     .hero-text { order: 2; }
-    .hero-image-container { order: 1; max-width: 280px; }
+    .hero-image-container { order: 1; max-width: 260px; }
+    .portrait-ring { width: min(100%, 260px); }
+    .portrait-caption { margin-top: 1.1rem; }
     
     /* Make timeline fit perfectly on small screens */
     .timeline::before { left: 1rem; }
@@ -787,25 +888,45 @@
       <div class="hero-text fade-up">
         <div class="status-pill">
           <div class="status-dot"></div>
-          Available for new opportunities
+          Available for opportunities
         </div>
         <h1 class="text-gradient">Muhammad<br>Adeel.</h1>
         <h2 class="hero-subtitle font-syne text-gradient-accent">
           <span id="typewriter"></span><span class="cursor-type">|</span>
         </h2>
         <p class="hero-desc">
-          Flutter developer building production-ready mobile apps for businesses —
-          from employee tools and booking systems to secure access and payment workflows.
+          Flutter developer shipping production mobile apps for businesses —
+          employee tools, booking systems, secure access, and payment workflows.
         </p>
+        <div class="hero-stack">
+          <span>Flutter</span>
+          <span>Firebase</span>
+          <span>REST APIs</span>
+          <span>MVVM</span>
+        </div>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">View Projects</a>
           <a href="#contact" class="btn btn-outline">Get in Touch</a>
+          <div class="hero-socials">
+            <a href="https://linkedin.com/in/muhammad-adeel-864b7b381" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+            </a>
+            <a href="https://github.com/MuhammadAdeel112" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.77.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 .3z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
       <div class="hero-image-container fade-up delay-200">
         <div class="hero-image-glow"></div>
-        <div class="hero-image-wrapper">
-          <img src="assets/images/adeel.png.jpeg" alt="Muhammad Adeel" class="hero-image">
+        <div class="portrait-ring">
+          <div class="hero-image-wrapper">
+            <img src="assets/images/adeel.png.jpeg" alt="Muhammad Adeel — Flutter Developer" class="hero-image">
+          </div>
+        </div>
+        <div class="portrait-caption">
+          <strong>Muhammad Adeel</strong>
+          <span>Flutter Developer · Pakistan</span>
         </div>
       </div>
     </div>
