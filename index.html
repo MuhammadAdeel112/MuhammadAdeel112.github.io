@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>Muhammad Adeel | Premium Portfolio</title>
+<title>Muhammad Adeel | Flutter Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -455,11 +455,6 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: clamp(1rem, 3vw, 1.5rem);
   }
-  .skill-icon {
-    font-size: clamp(2rem, 5vw, 2.5rem); 
-    margin-bottom: 1.5rem;
-    display: inline-block;
-  }
   .skill-title {
     font-size: clamp(1.3rem, 3vw, 1.5rem); 
     margin-bottom: 1rem;
@@ -485,54 +480,107 @@
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(1.5rem, 4vw, 2rem);
   }
-  .project-card {
+  .glass-card.project-card {
     display: flex; flex-direction: column;
     height: 100%;
+    padding: 0;
+    overflow: hidden;
   }
   .project-card.featured {
     grid-column: 1 / -1;
-    flex-direction: row;
-    gap: clamp(2rem, 5vw, 3rem);
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 0;
   }
   .project-img-container {
     width: 100%;
-    aspect-ratio: 16/9;
-    border-radius: 12px;
+    aspect-ratio: 16/10;
     overflow: hidden;
-    margin-bottom: 1.5rem;
-    background: #111;
+    background: linear-gradient(145deg, #121212, #1a1a1a);
     position: relative;
+    border-bottom: 1px solid var(--border);
   }
   .featured .project-img-container {
-    margin-bottom: 0;
-    width: 55%;
-    flex-shrink: 0;
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 280px;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
   }
   .project-img-container img {
     width: 100%; height: 100%; object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .project-card:hover .project-img-container img {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
-  .project-info { flex: 1; display: flex; flex-direction: column; }
+  .project-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+  }
+  .featured .project-info {
+    justify-content: center;
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+  }
   .project-meta {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.75rem;
   }
   .project-type {
-    font-size: 0.75rem; font-weight: 600; color: var(--accent-2);
-    text-transform: uppercase; letter-spacing: 1px;
+    font-size: 0.7rem; font-weight: 600; color: var(--accent-1);
+    text-transform: uppercase; letter-spacing: 1.2px;
   }
   .project-title { 
-    font-size: clamp(1.5rem, 4vw, 2rem); 
-    margin-bottom: 1rem; 
+    font-size: clamp(1.25rem, 3vw, 1.65rem); 
+    margin-bottom: 0.75rem; 
+  }
+  .featured .project-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
   }
   .project-desc {
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    margin-bottom: 1.25rem;
+    font-size: clamp(0.9rem, 2vw, 0.98rem);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .project-link {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 2px;
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .project-link:hover {
+    color: var(--accent-1);
+    border-color: var(--accent-1);
+  }
+
+  .skill-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    color: var(--accent-1);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
   }
 
   /* Experience Section */
@@ -633,10 +681,13 @@
   @media (max-width: 992px) {
     .hero-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
     .project-card.featured {
-      flex-direction: column;
-      align-items: stretch;
+      grid-template-columns: 1fr;
     }
-    .featured .project-img-container { width: 100%; margin-bottom: 1.5rem; }
+    .featured .project-img-container {
+      min-height: 220px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
     .projects-grid { grid-template-columns: 1fr; }
   }
 
@@ -743,12 +794,12 @@
           <span id="typewriter"></span><span class="cursor-type">|</span>
         </h2>
         <p class="hero-desc">
-          I craft high-performance, beautiful mobile applications with Flutter. 
-          Passionate about clean architecture, premium user experiences, and scalable Firebase backends.
+          Flutter developer building production-ready mobile apps for businesses —
+          from employee tools and booking systems to secure access and payment workflows.
         </p>
         <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">Explore Work</a>
-          <a href="#contact" class="btn btn-outline">Contact Me</a>
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
         </div>
       </div>
       <div class="hero-image-container fade-up delay-200">
@@ -763,14 +814,14 @@
   <!-- Skills Section -->
   <section id="skills">
     <div class="container">
-      <span class="section-tag fade-up">01. Arsenal</span>
-      <h2 class="section-title fade-up">Technical Expertise</h2>
+      <span class="section-tag fade-up">01. Expertise</span>
+      <h2 class="section-title fade-up">Technical Skills</h2>
       
       <div class="skills-grid">
         <div class="glass-card fade-up delay-100">
-          <div class="skill-icon">📱</div>
+          <div class="skill-icon">01</div>
           <h3 class="skill-title font-syne">Mobile Engineering</h3>
-          <p class="skill-desc">Building cross-platform mobile apps that feel truly native, responsive, and buttery smooth.</p>
+          <p class="skill-desc">Cross-platform Flutter apps with native performance, polished UI, and reliable release pipelines for Android and iOS.</p>
           <div class="skill-tags">
             <span class="tag">Flutter</span>
             <span class="tag">Dart</span>
@@ -780,9 +831,9 @@
         </div>
         
         <div class="glass-card fade-up delay-200">
-          <div class="skill-icon">🏛️</div>
+          <div class="skill-icon">02</div>
           <h3 class="skill-title font-syne">Architecture & State</h3>
-          <p class="skill-desc">Structuring robust, scalable, and testable codebases using modern design patterns.</p>
+          <p class="skill-desc">Maintainable app structure with clear separation of concerns, scalable state management, and testable modules.</p>
           <div class="skill-tags">
             <span class="tag">MVVM</span>
             <span class="tag">Provider</span>
@@ -792,13 +843,13 @@
         </div>
         
         <div class="glass-card fade-up delay-300">
-          <div class="skill-icon">⚡</div>
+          <div class="skill-icon">03</div>
           <h3 class="skill-title font-syne">Backend Integration</h3>
-          <p class="skill-desc">Connecting apps to real-time databases, authentication, and secure cloud functions.</p>
+          <p class="skill-desc">Secure auth, real-time data, cloud services, and REST API integrations for production client applications.</p>
           <div class="skill-tags">
             <span class="tag">Firebase</span>
-            <span class="tag">MongoDB</span>
             <span class="tag">REST APIs</span>
+            <span class="tag">MongoDB</span>
             <span class="tag">Node.js</span>
           </div>
         </div>
@@ -809,24 +860,66 @@
   <!-- Projects Section -->
   <section id="projects">
     <div class="container">
-      <span class="section-tag fade-up">02. Portfolio</span>
-      <h2 class="section-title fade-up">Selected Works</h2>
+      <span class="section-tag fade-up">02. Work</span>
+      <h2 class="section-title fade-up">Selected Projects</h2>
       
       <div class="projects-grid">
-        <!-- Project 1 (Featured) -->
-        <div class="glass-card project-card featured fade-up delay-100">
-          <!-- Placeholder background if image is missing -->
-          <div class="project-img-container" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
-             <img src="assets/images/salon.png" alt="Salon Manager App" style="opacity: 0.8;" onerror="this.style.display='none'">
+        <!-- Featured: PayLock -->
+        <article class="glass-card project-card featured fade-up delay-100">
+          <div class="project-img-container">
+            <img src="assets/images/paylock.png" alt="PayLock app screenshot" onerror="this.style.display='none'">
           </div>
           <div class="project-info">
             <div class="project-meta">
-              <span class="project-type">Live App • Business Tool</span>
+              <span class="project-type">Client Work · Android</span>
             </div>
-            <h3 class="project-title font-syne">Salon Manager App</h3>
+            <h3 class="project-title font-syne">PayLock</h3>
             <p class="project-desc">
-              A professional end-to-end management solution for salon businesses published on the Play Store. 
-              Features real-time booking, comprehensive service/inventory management, and a robust push notification system for both owners and clients.
+              EMI device locking and payment management app that tracks installment-based devices with secure authentication and real-time status updates.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">REST API</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Divine Employee -->
+        <article class="glass-card project-card fade-up delay-100">
+          <div class="project-img-container">
+            <img src="assets/images/divine_employee.png" alt="Divine Employee App screenshot" onerror="this.style.display='none'">
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-type">Client Work · Android</span>
+            </div>
+            <h3 class="project-title font-syne">Divine Employee</h3>
+            <p class="project-desc">
+              Employee management app where users can view assigned and available jobs, complete tasks, and receive notifications.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Dart</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">REST API</span>
+              <span class="tag">Provider</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Salon Manager -->
+        <article class="glass-card project-card fade-up delay-200">
+          <div class="project-img-container">
+            <img src="assets/images/salon_manager.png" alt="Salon Manager app screenshot" onerror="this.style.display='none'">
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-type">Mobile App</span>
+            </div>
+            <h3 class="project-title font-syne">Salon Manager</h3>
+            <p class="project-desc">
+              Salon booking and management application for customers and salon owners.
             </p>
             <div class="skill-tags">
               <span class="tag">Flutter</span>
@@ -834,41 +927,70 @@
               <span class="tag">Provider</span>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- Project 2 -->
-        <div class="glass-card project-card fade-up delay-100">
+        <!-- Door Pop -->
+        <article class="glass-card project-card fade-up delay-100">
+          <div class="project-img-container">
+            <img src="assets/images/door_pop.png" alt="Door Pop app screenshot" onerror="this.style.display='none'">
+          </div>
           <div class="project-info">
             <div class="project-meta">
-              <span class="project-type">Enterprise App</span>
+              <span class="project-type">Client Work · Mobile</span>
             </div>
-            <h3 class="project-title font-syne">Divine Employee</h3>
+            <h3 class="project-title font-syne">Door Pop</h3>
             <p class="project-desc">
-              Enterprise-level employee management platform featuring secure authentication, tracking, and seamless team communication via Firebase.
+              Smart door access and visitor management application for secure entry and user authentication.
             </p>
-            <div class="skill-tags" style="margin-top: auto;">
+            <div class="skill-tags">
               <span class="tag">Flutter</span>
-              <span class="tag">Firebase Admin</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">REST API</span>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- Project 3 -->
-        <div class="glass-card project-card fade-up delay-200">
+        <!-- MDCAT -->
+        <article class="glass-card project-card fade-up delay-200">
+          <div class="project-img-container">
+            <img src="assets/images/mdcat.png" alt="MDCAT Preparation App screenshot" onerror="this.style.display='none'">
+          </div>
           <div class="project-info">
             <div class="project-meta">
-              <span class="project-type">Desktop App</span>
+              <span class="project-type">Mobile App</span>
             </div>
-            <h3 class="project-title font-syne">Bilty Desktop</h3>
+            <h3 class="project-title font-syne">MDCAT Preparation</h3>
             <p class="project-desc">
-              A specialized Windows/macOS desktop application for logistics management. Handles complex shipment records, custom report generation, and daily workflows.
+              Online test preparation app with MCQs, mock tests, and results tracking.
             </p>
-            <div class="skill-tags" style="margin-top: auto;">
-              <span class="tag">Flutter Desktop</span>
-              <span class="tag">MongoDB</span>
+            <div class="skill-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">REST API</span>
+              <span class="tag">Provider</span>
+              <span class="tag">MVVM</span>
             </div>
           </div>
-        </div>
+        </article>
+
+        <!-- Corona Tracker -->
+        <article class="glass-card project-card fade-up delay-300">
+          <div class="project-img-container">
+            <img src="assets/images/corona_tracker.png" alt="Corona Tracker app screenshot" onerror="this.style.display='none'">
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-type">Mobile App</span>
+            </div>
+            <h3 class="project-title font-syne">Corona Tracker</h3>
+            <p class="project-desc">
+              COVID-19 statistics application showing worldwide and country-wise data.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">REST API</span>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -876,27 +998,27 @@
   <!-- Experience Section -->
   <section id="experience">
     <div class="container">
-      <span class="section-tag fade-up">03. Journey</span>
-      <h2 class="section-title fade-up">Experience</h2>
+      <span class="section-tag fade-up">03. Experience</span>
+      <h2 class="section-title fade-up">Professional Journey</h2>
       
       <div class="timeline">
         <div class="timeline-item fade-up delay-100">
           <div class="timeline-dot"></div>
           <div class="timeline-date">2024 — Present</div>
           <h3 class="timeline-role font-syne">Flutter Developer</h3>
-          <div class="timeline-company">Mobile App Development</div>
+          <div class="timeline-company">Client & Product Apps</div>
           <p class="skill-desc">
-            Designing and engineering cross-platform mobile apps. Architecting scalable solutions using MVVM, integrating Firebase services, and managing complex state. Published full-scale applications to the Google Play Store.
+            Building and shipping cross-platform mobile apps for clients — employee tools, booking systems, secure access, and payment workflows. Focused on MVVM architecture, Firebase, REST APIs, and production-ready Android releases.
           </p>
         </div>
         
         <div class="timeline-item fade-up delay-200">
           <div class="timeline-dot" style="border-color: var(--accent-2);"></div>
           <div class="timeline-date" style="color: var(--accent-2);">2023 — 2024</div>
-          <h3 class="timeline-role font-syne">Dart & UI Specialist</h3>
-          <div class="timeline-company">Self-Directed & Open Source</div>
+          <h3 class="timeline-role font-syne">Flutter & Dart Developer</h3>
+          <div class="timeline-company">Independent Projects</div>
           <p class="skill-desc">
-            Mastered Dart fundamentals and Flutter UI rendering system. Contributed to "Logic Hub" — a library of Dart algorithms. Built numerous UI clones and interactive prototypes.
+            Strengthened Flutter fundamentals through real apps including test prep, data dashboards, and UI prototypes. Practiced clean structure, API integration, and state management with Provider.
           </p>
         </div>
       </div>
@@ -907,10 +1029,10 @@
   <section id="contact">
     <div class="container">
       <div class="contact-section glass-card fade-up">
-        <span class="section-tag" style="margin-bottom: 0.5rem;">04. What's Next?</span>
-        <h2 class="section-title" style="margin-bottom: 1rem;">Let's build together.</h2>
+        <span class="section-tag" style="margin-bottom: 0.5rem;">04. Contact</span>
+        <h2 class="section-title" style="margin-bottom: 1rem;">Let's work together.</h2>
         <p class="skill-desc" style="margin: 0 auto; max-width: 500px;">
-          I'm currently looking for new opportunities. Whether you have a project in mind or just want to connect, my inbox is always open.
+          Open to freelance and full-time Flutter roles. Share a project brief or connect — I'll get back promptly.
         </p>
         <div style="margin: 2.5rem 0;">
           <a href="mailto:muhammmadadeel64@gmail.com" class="contact-email">
@@ -929,8 +1051,8 @@
 
 <footer>
   <div class="footer-content">
-    <div>© 2025 Muhammad Adeel. Built with passion.</div>
-    <div class="font-syne" style="color: var(--accent-2);">"Code as beautiful as the UI it powers."</div>
+    <div>© 2026 Muhammad Adeel.</div>
+    <div class="font-syne" style="color: var(--text-secondary);">Flutter · Firebase · Mobile Apps</div>
   </div>
 </footer>
 
@@ -1011,7 +1133,7 @@
   });
 
   // Typewriter Effect
-  const texts = ["Flutter Developer", "Mobile Engineer", "UI/UX Enthusiast"];
+  const texts = ["Flutter Developer", "Mobile App Engineer", "Client App Specialist"];
   let textIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
