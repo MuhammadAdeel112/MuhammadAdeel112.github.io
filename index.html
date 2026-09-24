@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Muhammad Adeel | Flutter Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,9 @@
     --accent-3: #94a3b8;
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
+    --page-pad: clamp(1rem, 4.2vw, 1.5rem);
+    --header-h: 5.5rem;
+    --tap: 44px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,6 +32,8 @@
     font-size: 16px;
     background-color: var(--bg);
     -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    color-scheme: dark;
   }
   
   body {
@@ -40,6 +45,8 @@
     min-width: 0;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   img, svg, video {
@@ -153,15 +160,16 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 1.5rem);
+    padding-left: max(var(--page-pad), env(safe-area-inset-left));
+    padding-right: max(var(--page-pad), env(safe-area-inset-right));
   }
 
   section {
-    padding: clamp(3.5rem, 8vw, 8rem) 0;
+    padding: clamp(3.25rem, 8vw, 8rem) 0;
     position: relative;
     width: 100%;
     overflow-x: clip;
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: var(--header-h);
   }
 
   /* Header */
@@ -217,34 +225,47 @@
 
   .menu-btn {
     display: none;
-    background: none; border: none;
+    background: none;
+    border: none;
     cursor: pointer;
-    width: 32px; height: 24px;
+    width: var(--tap);
+    height: var(--tap);
     position: relative;
     z-index: 101;
+    border-radius: 10px;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
   }
   .menu-btn span {
-    position: absolute; left: 0;
-    width: 100%; height: 2px;
+    position: absolute;
+    left: 11px;
+    width: 22px;
+    height: 2px;
     background: var(--text-primary);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 2px;
   }
-  .menu-btn span:nth-child(1) { top: 0; }
-  .menu-btn span:nth-child(2) { top: 11px; }
-  .menu-btn span:nth-child(3) { bottom: 0; }
-  .menu-btn.active span:nth-child(1) { transform: rotate(45deg); top: 11px; }
-  .menu-btn.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
-  .menu-btn.active span:nth-child(3) { transform: rotate(-45deg); bottom: 11px; }
+  .menu-btn span:nth-child(1) { top: 14px; }
+  .menu-btn span:nth-child(2) { top: 21px; }
+  .menu-btn span:nth-child(3) { top: 28px; }
+  .menu-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .menu-btn.active span:nth-child(1) { transform: rotate(45deg); top: 21px; }
+  .menu-btn.active span:nth-child(2) { opacity: 0; transform: translateX(-8px); }
+  .menu-btn.active span:nth-child(3) { transform: rotate(-45deg); top: 21px; }
 
   /* Mobile Nav Overlay */
   .mobile-nav {
     position: fixed; inset: 0;
+    width: 100%;
+    height: 100dvh;
     background: rgba(7, 9, 12, 0.98);
     backdrop-filter: blur(25px);
     z-index: 99;
     display: flex; flex-direction: column;
     justify-content: center; align-items: center;
+    padding: env(safe-area-inset-top) var(--page-pad) env(safe-area-inset-bottom);
     opacity: 0; pointer-events: none;
     transition: opacity 0.4s ease;
   }
@@ -358,7 +379,7 @@
 
   .hero-content > * { min-width: 0; }
   .hero h1 {
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     font-size: clamp(2.8rem, 7.5vw, 5.2rem);
     letter-spacing: -0.04em;
     margin-bottom: 0.85rem;
@@ -639,6 +660,16 @@
     font-size: 1.15rem;
     font-weight: 700;
     letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
+  }
+  .shelf-hint {
+    display: none;
+    margin: -0.35rem 0 1.15rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-1);
   }
   .app-tile-meta {
     color: var(--text-secondary);
@@ -994,8 +1025,9 @@
     border: 0;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 839.98px) {
     .app-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .device-slot { height: auto; min-height: 0; }
     .stage-panel {
       grid-template-columns: 1fr;
       justify-items: center;
@@ -1349,7 +1381,7 @@
     color: transparent;
     -webkit-text-fill-color: transparent;
     animation: emailShine 5s linear infinite;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
   @keyframes emailShine {
     from { background-position: 120% 0; }
@@ -1406,119 +1438,167 @@
   .delay-300 { transition-delay: 300ms; }
 
   /* -------------------------------------
-     RESPONSIVE — Laptop / Tablet / Mobile
+     RESPONSIVE — Flutter / Material window sizes
+     compact  < 600
+     medium   600–839
+     expanded 840–1199
+     large    1200+
      ------------------------------------- */
 
-  /* Large laptop */
-  @media (max-width: 1200px) {
-    .hero-content {
-      gap: 2.5rem;
-    }
-    .portrait-ring {
-      width: min(100%, 300px);
-    }
+  @media (max-width: 1199.98px) {
+    .hero-content { gap: 2.5rem; }
+    .portrait-ring { width: min(100%, 300px); }
   }
 
-  /* Tablet landscape / small laptop */
-  @media (max-width: 992px) {
-    .nav-links { gap: 1.5rem; }
-    .nav-links a { font-size: 0.85rem; }
-
-    .hero {
-      min-height: auto;
-      padding-top: 6.5rem;
-      padding-bottom: 3.5rem;
-    }
-    .hero-content {
-      grid-template-columns: 1fr 0.9fr;
-      gap: 2rem;
-      align-items: center;
-    }
-    .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
-    }
-    .portrait-ring {
-      width: min(100%, 280px);
-    }
-
-    .handset.stage-device.is-tablet { width: min(560px, 92vw); }
-
-    .timeline {
-      max-width: 100%;
-    }
-  }
-
-  /* Tablet portrait / large phone */
-  @media (max-width: 768px) {
+  /* Medium / expanded: tablet + small laptop */
+  @media (max-width: 839.98px) {
     .nav-links { display: none; }
-    .menu-btn {
-      display: block;
-      min-width: 44px;
-      min-height: 44px;
-    }
+    .menu-btn { display: block; }
 
     header {
-      padding: 1rem 0;
-      padding-left: env(safe-area-inset-left);
-      padding-right: env(safe-area-inset-right);
+      padding: 0.85rem 0;
     }
 
     .hero {
       min-height: auto;
-      padding-top: calc(5.5rem + env(safe-area-inset-top));
-      padding-bottom: 2.5rem;
+      padding-top: calc(5.25rem + env(safe-area-inset-top));
+      padding-bottom: 2.75rem;
+    }
+    .hero-content {
+      grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+      gap: 1.75rem;
+      align-items: center;
+    }
+    .hero h1 { font-size: clamp(2.1rem, 5.4vw, 3.1rem); }
+    .hero-image-container { max-width: 240px; }
+    .portrait-ring { width: min(100%, 240px); }
+
+    .handset.stage-device.is-tablet { width: min(560px, 92vw); }
+    .timeline { max-width: 100%; }
+  }
+
+  /* Compact: phones — LayoutBuilder / MediaQuery width < 600 */
+  @media (max-width: 599.98px) {
+    :root {
+      --page-pad: 1.15rem;
+      --header-h: 4.35rem;
+    }
+
+    section {
+      padding: 3.15rem 0;
+    }
+
+    header { padding: max(0.55rem, env(safe-area-inset-top)) 0 0.55rem; }
+
+    .hero {
+      min-height: auto;
+      padding-top: calc(4.35rem + env(safe-area-inset-top));
+      padding-bottom: 1.75rem;
       text-align: center;
     }
     .hero-content {
       grid-template-columns: minmax(0, 1fr);
-      gap: 2rem;
+      gap: 1.1rem;
     }
     .hero-text { order: 2; min-width: 0; }
     .hero-image-container {
       order: 1;
-      max-width: 240px;
+      max-width: 160px;
     }
-    .portrait-ring { width: min(100%, 240px); }
-    .portrait-caption { margin-top: 1rem; }
+    .portrait-ring { width: min(100%, 160px); }
+    .portrait-caption { display: none; }
+    .hero-image-glow { filter: blur(36px); }
 
-    .hero-actions {
-      justify-content: center;
-      gap: 0.75rem;
+    .hero h1 {
+      font-size: clamp(1.95rem, 8.6vw, 2.35rem);
+      line-height: 1.02;
+      margin-bottom: 0.5rem;
+      overflow-wrap: normal;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.02rem, 4.6vw, 1.2rem);
+      min-height: 1.55rem;
+      margin-bottom: 0.8rem;
     }
     .hero-desc {
-      margin: 0 auto 1.5rem;
+      margin: 0 auto 1.05rem;
       max-width: 36rem;
+      font-size: 0.98rem;
+      line-height: 1.65;
     }
     .hero-stack {
       justify-content: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.1rem;
     }
-    .hero-socials { margin-left: 0; }
-    .status-pill { margin-bottom: 1.25rem; }
+    .hero-actions {
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      align-items: stretch;
+      gap: 0.7rem;
+    }
+    .hero-actions .btn {
+      width: 100%;
+      min-height: var(--tap);
+    }
+    .hero-socials {
+      justify-content: center;
+      width: 100%;
+      margin-left: 0;
+      margin-top: 0.1rem;
+    }
+    .hero-socials a {
+      width: var(--tap);
+      height: var(--tap);
+    }
+    .status-pill { margin-bottom: 0.95rem; }
 
     .btn {
-      padding: 0.9rem 1.75rem;
-      font-size: 0.9rem;
+      padding: 0.9rem 1.45rem;
+      font-size: 0.92rem;
     }
 
-    .section-title {
-      margin-bottom: 2rem;
-    }
+    .section-title { margin-bottom: 1.35rem; }
+    .section-lead { margin-bottom: 1.6rem; font-size: 0.95rem; }
 
     .glass-card:hover,
     .glass-card.skill-card:hover,
-    .timeline-card:hover {
-      transform: none;
+    .timeline-card:hover { transform: none; }
+    .app-tile:hover .handset,
+    .app-tile:focus-visible .handset { transform: none; }
+    .portrait-ring:hover .hero-image { transform: scale(1.08); }
+
+    .shelf-hint { display: block; }
+    .app-shelf {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 0.25rem;
+      gap: 1rem;
+      padding: 0.25rem 0.15rem 1rem;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      touch-action: pan-x;
     }
-    .app-tile:hover .handset { transform: none; }
-    .portrait-ring:hover .hero-image {
-      transform: scale(1.08);
+    .app-shelf::-webkit-scrollbar { display: none; }
+    .app-tile {
+      flex: 0 0 min(78vw, 270px);
+      width: min(78vw, 270px);
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
     }
+    .device-slot {
+      height: auto;
+      min-height: 0;
+    }
+    .handset { width: clamp(148px, 42vw, 176px); }
+    .handset.is-tablet { width: min(100%, 240px); }
+    .app-tile-name { font-size: 1.05rem; }
 
     .timeline-rail { left: calc(0.875rem - 1px); }
-    .timeline-item {
-      padding-left: 3rem;
-    }
+    .timeline-item { padding-left: 3rem; }
     .timeline-dot {
       width: 1.75rem;
       height: 1.75rem;
@@ -1526,16 +1606,21 @@
       top: 1.4rem;
     }
     .timeline-dot span { font-size: 0.58rem; }
-    .timeline-card {
-      padding: 1.15rem;
-    }
+    .timeline-card { padding: 1.15rem; }
+    .timeline-head { flex-wrap: wrap; }
 
-    .contact-section {
-      padding: 1.5rem 1rem !important;
-    }
+    .contact-section { padding: 1.45rem 1.1rem !important; }
     .contact-email {
-      font-size: clamp(1rem, 5.5vw, 1.5rem);
-      margin: 1.25rem 0;
+      font-size: clamp(1rem, 5.2vw, 1.35rem);
+      margin: 1.15rem 0;
+    }
+    .contact-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .contact-actions .btn {
+      width: 100%;
+      min-height: var(--tap);
     }
 
     .footer-content {
@@ -1550,103 +1635,75 @@
       width: 70vw;
       height: 70vw;
     }
+
+    .mobile-nav a { font-size: clamp(1.7rem, 8vw, 2.4rem); }
+    .mobile-nav li { margin: 1.15rem 0; }
+    .skill-card .skill-mark { font-size: 2.2rem; }
   }
 
-  /* Mobile */
-  @media (max-width: 480px) {
-    .container {
-      padding: 0 1rem;
-    }
+  /* Extra-small phones */
+  @media (max-width: 360px) {
+    :root { --page-pad: 1rem; }
 
-    section {
-      padding: 3rem 0;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.9rem, 8.8vw, 2.6rem);
-      line-height: 1.05;
-    }
-    .hero-subtitle {
-      font-size: 1.1rem;
-      min-height: 1.8rem;
-    }
-    .hero-image-container { max-width: 200px; }
-    .portrait-ring { width: min(100%, 200px); }
-
-    .hero-actions {
-      flex-direction: column;
-      width: 100%;
-      align-items: stretch;
-    }
-    .hero-actions .btn {
-      width: 100%;
-    }
-    .hero-socials {
-      justify-content: center;
-      width: 100%;
-      margin-top: 0.25rem;
-    }
-
+    .hero h1 { font-size: clamp(1.85rem, 11vw, 2.2rem); }
+    .hero-image-container { max-width: 128px; }
+    .portrait-ring { width: min(100%, 128px); }
     .status-pill {
       padding: 6px 12px;
       font-size: 0.72rem;
       max-width: 100%;
     }
-
     .hero-stack span {
       font-size: 0.68rem;
       padding: 0.3rem 0.55rem;
     }
-
     .glass-card {
-      padding: 1.25rem;
+      padding: 1.15rem;
       border-radius: 16px;
     }
-
-    .device-slot { height: 330px; }
-    .handset { width: clamp(124px, 38vw, 150px); }
-    .handset.is-tablet { width: min(100%, 240px); }
-
-    .mobile-nav a {
-      font-size: clamp(1.6rem, 7vw, 2.2rem);
+    .app-tile {
+      flex-basis: min(84vw, 250px);
+      width: min(84vw, 250px);
     }
-    .mobile-nav li { margin: 1rem 0; }
-  }
-
-  /* Extra small phones */
-  @media (max-width: 360px) {
-    .hero-image-container { max-width: 170px; }
-    .portrait-ring { width: min(100%, 170px); }
+    .handset { width: clamp(132px, 46vw, 156px); }
     .timeline-item { padding-left: 2.6rem; }
     .tag {
       font-size: 0.72rem;
       padding: 0.3rem 0.6rem;
     }
+    .hero-actions .btn { padding: 0.85rem 1.2rem; }
   }
 
-  /* Short landscape phones / small height */
+  /* Short landscape phones */
   @media (max-height: 500px) and (orientation: landscape) {
     .hero {
       min-height: auto;
-      padding-top: 5rem;
-      padding-bottom: 2rem;
+      padding-top: calc(4.5rem + env(safe-area-inset-top));
+      padding-bottom: 1.5rem;
+      text-align: left;
     }
     .hero-content {
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 1.5rem;
-      text-align: left;
+      grid-template-columns: minmax(0, 1.2fr) minmax(120px, 0.7fr);
+      gap: 1.25rem;
     }
     .hero-text { order: 0; }
     .hero-image-container {
       order: 0;
-      max-width: 160px;
+      max-width: 148px;
     }
-    .portrait-ring { width: min(100%, 160px); }
+    .portrait-ring { width: min(100%, 148px); }
     .portrait-caption { display: none; }
     .hero-stack { display: none; }
-    .hero-actions,
-    .hero-stack { justify-content: flex-start; }
+    .hero-actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: auto;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .hero-actions .btn { width: auto; }
     .hero-desc { margin-left: 0; text-align: left; }
+    .hero-socials { width: auto; justify-content: flex-start; }
   }
 
   /* Prefer reduced motion */
@@ -1699,7 +1756,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle Menu">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle Menu" aria-controls="mobileNav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1773,7 +1830,7 @@
     <div class="container">
       <span class="section-tag fade-up">01. Expertise</span>
       <h2 class="section-title with-lead fade-up">Technical Skills</h2>
-      <p class="section-lead fade-up">The stack behind the apps — mobile UI, architecture, and the services they talk to. Hover a card and it leans toward you.</p>
+      <p class="section-lead fade-up">The stack behind the apps — mobile UI, architecture, and the services they talk to.</p>
       
       <div class="skills-grid">
         <div class="glass-card skill-card fade-up delay-100" style="--tone:#2dd4bf">
@@ -1823,7 +1880,8 @@
     <div class="container">
       <span class="section-tag fade-up">02. Work</span>
       <h2 class="section-title with-lead fade-up">Apps you can open</h2>
-      <p class="section-lead fade-up">Pick up a phone and tilt it. Tap the screen — each tap opens the next page, like the app is in your hand.</p>
+      <p class="section-lead fade-up">Open any phone. Tap the screen to flip through real pages from the app.</p>
+      <p class="shelf-hint fade-up">Swipe to browse apps</p>
       <div class="app-shelf" id="appShelf"></div>
     </div>
   </section>
@@ -1931,7 +1989,7 @@
           Open to freelance and full-time Flutter roles. Share a project brief or connect — I'll get back promptly.
         </p>
         <a href="mailto:muhammmadadeel64@gmail.com" class="contact-email">
-          muhammmadadeel64@gmail.com
+          muhammmadadeel64@<wbr>gmail.com
         </a>
         <div class="contact-actions">
           <a href="mailto:muhammmadadeel64@gmail.com" class="btn btn-primary">Email me</a>
@@ -1992,21 +2050,27 @@
   const mobileNav = document.getElementById('mobileNav');
   const mobLinks = document.querySelectorAll('.mob-link');
 
+  function setMenuOpen(open) {
+    menuBtn.classList.toggle('active', open);
+    mobileNav.classList.toggle('active', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
   function toggleMenu() {
-    menuBtn.classList.toggle('active');
-    mobileNav.classList.toggle('active');
-    // Prevent scrolling when menu is open on mobile
-    if(mobileNav.classList.contains('active')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    setMenuOpen(!mobileNav.classList.contains('active'));
   }
 
   menuBtn.addEventListener('click', toggleMenu);
   mobLinks.forEach(link => link.addEventListener('click', () => {
-    if (mobileNav.classList.contains('active')) toggleMenu();
+    if (mobileNav.classList.contains('active')) setMenuOpen(false);
   }));
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav.classList.contains('active')) setMenuOpen(false);
+  });
+  window.matchMedia('(min-width: 840px)').addEventListener('change', (e) => {
+    if (e.matches && mobileNav.classList.contains('active')) setMenuOpen(false);
+  });
 
   // Launchable app shelf
   const APPS = [
@@ -2446,8 +2510,8 @@
   // Scroll Animations (Intersection Observer)
   const observerOptions = {
     root: null,
-    rootMargin: '0px',
-    threshold: 0.1
+    rootMargin: '80px 0px',
+    threshold: 0.05
   };
 
   const observer = new IntersectionObserver((entries) => {
